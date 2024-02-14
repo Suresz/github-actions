@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
         with:
           ref: development_branch
 
@@ -26,5 +26,5 @@ jobs:
         run: |
           git fetch origin qa_branch
           git checkout qa_branch
-          git merge origin/development_branch --no-edit --allow-unrelated-histories
+          git merge origin/development_branch --no-edit  --allow-unrelated-histories
           git push origin qa_branch
