@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - development_branch
+permissions:
+  contents: write
 
 jobs:
   push-to-qa:
