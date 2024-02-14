@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - development_branch
+      
 permissions:
   contents: write
 
@@ -25,5 +26,5 @@ jobs:
         run: |
           git fetch origin qa_branch
           git checkout qa_branch
-          git merge origin/development_branch --no-edit
+          git merge origin/development_branch --no-edit  --allow-unrelated-histories 
           git push origin qa_branch
