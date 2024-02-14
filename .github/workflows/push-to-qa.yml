@@ -24,7 +24,6 @@ jobs:
 
       - name: Push to qa_branch
         run: |
-          git fetch origin qa_branch
-          git checkout qa_branch
-          git merge --allow-unrelated-histories qa_branch
+          git checkout -b qa_branch origin/qa_branch
+          git merge --allow-unrelated-histories development_branch
           git push origin qa_branch
