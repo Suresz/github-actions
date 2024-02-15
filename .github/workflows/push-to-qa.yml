@@ -1,26 +1,29 @@
-name: CI - Update QA Branch
+name: CI - Push to qa_branch
 
 on:
   push:
     branches:
       - development_branch
-      
 permissions:
   contents: write
 
 jobs:
-  update-qa-branch:
+  push-to-qa:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Development Branch
-        uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
           ref: development_branch
 
-      - name: Merge into QA Branch
+      - name: Set up Git
         run: |
           git config --global user.name 'GitHub Actions'
           git config --global user.email 'actions@github.com'
-          git checkout -b qa_branch origin/qa_branch
-          git merge --allow-unrelated-histories --no-ff --no-edit development_branch
+
+      - name: Push to qa_branch
+        run: |
+          git fetch origin qa_branch
+          git checkout qa_branch
+          git merge origin/development_branch --no-edit --allow-unrelated-histories
           git push origin qa_branch
